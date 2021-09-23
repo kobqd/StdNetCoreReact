@@ -1,0 +1,51 @@
+dotnet --info                       -> current dotnet version
+dotnet -h                           -> command
+dotnet new -l                       -> template list for create
+dotnet new sln                      -> create new solution file
+dotnet new webapi -n API            -> new webApi project with name "API"
+dotnet new classlib -n Application  -> new class library with name "Application"
+dotnet sln add API                  -> add api project to solution
+dotnet sln list                     -> show all added proj in solution
+cd API
+dotnet add reference ../Application -> add Application dependency to API proj
+dotnet tool list --global           -> check tool list(for migration,etc...)
+dotnet tool install --global dotnet-ef --version 5.0.10 -> install dotnet ef
+dotnet tool update --global dotnet-ef --version 5.0.10  -> update dotnet ef
+dotnet ef -h  -> show commands of ef
+dotnet ef migrations add InitialCreate -p Persistence -s API -> migration (DbContext in Persistence, Startup in API)
+dotnet watch run
+
+
+------------------------------------------------------------------------------
+node --version -> check nodejs version
+npm --version  -> check npm version
+npx create-react-app client-app --use-npm --template typescript
+npm install semantic-ui-react semantic-ui-css
+
+
+
+
+
+
+
+------------------------------------------------------------------------------
+public static async Task Main(string[] args)
+{
+    var host = CreateHostBuilder(args).Build();
+
+    using var scope = host.Services.CreateScope();
+
+    var services = scope.ServiceProvider;
+
+    try{
+        var context = services.GetRequiredService<DataContext>();
+        await context.Database.MigrateAsync();
+        await Seed.SeedData(context);
+    }catch(Exception ex){
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex,"An error occurred during migration -- Program.cs");
+    }
+
+    await host.RunAsync();
+}
+------------------------------------------------------------------------------
