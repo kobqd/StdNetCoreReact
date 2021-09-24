@@ -14,6 +14,7 @@ dotnet tool update --global dotnet-ef --version 5.0.10  -> update dotnet ef
 dotnet ef -h  -> show commands of ef
 dotnet ef migrations add InitialCreate -p Persistence -s API -> migration (DbContext in Persistence, Startup in API)
 dotnet watch run
+dotnet restore
 
 
 ------------------------------------------------------------------------------
@@ -21,10 +22,10 @@ node --version -> check nodejs version
 npm --version  -> check npm version
 npx create-react-app client-app --use-npm --template typescript
 npm install semantic-ui-react semantic-ui-css
-
-
-
-
+------------------------------------------------------------------------------
+extensions:
+    + mediatR.Extensions.Microsoft.dependencyInjection
+    + AutoMapper.Extensions.Microsoft.dependencyInjection
 
 
 
