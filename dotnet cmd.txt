@@ -22,6 +22,8 @@ node --version -> check nodejs version
 npm --version  -> check npm version
 npx create-react-app client-app --use-npm --template typescript
 npm install semantic-ui-react semantic-ui-css
+npm install uuid
+npm i --save-dev @types/uuid
 ------------------------------------------------------------------------------
 extensions:
     + mediatR.Extensions.Microsoft.dependencyInjection
